@@ -13,12 +13,8 @@ struct FirstPathView: View {
             Text("First Path View")
                 .font(.largeTitle)
             
-            Button("Push Second Path View") {
+            Button("Go to Second Path View") {
                 path.append(PathDestination.second)
-            }
-            
-            Button("Pop to Root") {
-                path.removeLast(path.count)
             }
         }
         .navigationTitle("Path First")

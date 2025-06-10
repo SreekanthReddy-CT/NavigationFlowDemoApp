@@ -14,14 +14,7 @@ struct NavigationStackWithPathFlowView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            VStack(spacing: 20) {
-                Text("PathStack Root View")
-                    .font(.largeTitle)
-                
-                Button("Push First Path View") {
-                    path.append(PathDestination.first)
-                }
-            }
+            FirstPathView(path: $path)
             .navigationDestination(for: PathDestination.self) { destination in
                 switch destination {
                 case .first:
