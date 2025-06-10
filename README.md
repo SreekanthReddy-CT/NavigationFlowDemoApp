@@ -1,14 +1,18 @@
 # NavigationFlowDemoApp
 
-A demo project showcasing different navigation patterns in SwiftUI:
+A demo project showcasing how to solve the **Pre-initialization Problem** in SwiftUI navigation patterns.
 
-- `NavigationLink`
-- `NavigationStack` with `.navigationDestination(isPresented:)`
-- `NavigationStack` with `.navigationDestination(for:)` using `NavigationPath`
+## The Problem: Pre-initialization
 
-## Objective
+In below navigation patterns, destination views are **pre-initialized** as soon as the first view appears:
+- NavigationLink
+- NavigationStack + `.navigationDestination(isPresented:)`
 
-This project demonstrates key differences in **view initialization timing** across navigation patterns in SwiftUI, and highlights why adopting `.navigationDestination(for:)` with `NavigationPath` is recommended for building scalable, lifecycle-safe navigation flows.
+**Goal:** Initialize destination views **only when the user navigates to them**.
+
+**Solution:**
+By adopting `.navigationDestination(for:)` with `NavigationPath` to enable **on-demand (lazy)** initialization.
+
 
 ## Key Observations
 
@@ -20,14 +24,8 @@ This project demonstrates key differences in **view initialization timing** acro
 
 > Pre-initialization is a side effect of SwiftUI’s diffing and rendering engine. The `.navigationDestination(for:)` closure is not strictly lazy unless used with `NavigationPath`.
 
-## Recommended Pattern
 
-```swift
-NavigationStack(path: $path)
-    .navigationDestination(for: MyEnum.self) { ... }
-```
-
-## Benefits
+## Benefits of `.navigationDestination(for:)` with `NavigationPath`
 
 - Programmatic navigation
 - Type-safe navigation
