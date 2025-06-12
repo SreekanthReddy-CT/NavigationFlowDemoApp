@@ -1,9 +1,9 @@
 import SwiftUI
 
 struct FirstPathView: View {
-    @Binding var path: NavigationPath
+    @Binding var path: [PathDestination]
     
-    init(path: Binding<NavigationPath>) {
+    init(path: Binding<[PathDestination]>) {
         self._path = path
         print("Initialized: \(Self.self)")
     }
